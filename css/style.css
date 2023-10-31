@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
+:root {
+    --primary-color: #000000;
+    --secondary-color: #000000;
+    
+    --background-color: #242429;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -9,19 +16,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-height: 95vh;
-}
 
-.title {
-    width: 100vw;
-    height: 95vh;
+    background-color: var(--background-color);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    text-align: left;
     font-family: 'Roboto', sans-serif;
-    
-    font-size: 20rem;
 }

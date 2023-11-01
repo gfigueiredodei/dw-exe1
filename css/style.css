@@ -1,10 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap');
 
 :root {
     --primary-color: #000000;
     --secondary-color: #000000;
-    
-    --background-color: #242429;
+
+    --background-color: #000000;
+
+    --font-color-primary: #00FF00;
+
+    --border-color-primary: #4e4e4e;
 }
 
 * {
@@ -13,11 +17,113 @@
 }
 
 body {
+    width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
     background-color: var(--background-color);
 
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: small;
 }
+
+
+/* HEADER */
+
+.header-container {
+    width: 95%;
+    height: 100px;
+    margin: 20px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    color: white;
+    border: 1px solid var(--border-color-primary);
+}
+
+.header-title {
+    width: 50%;
+    margin-left: 30px;
+
+    display: flex;
+    flex-direction: column;
+
+    text-align: left;
+}
+
+.header-actions {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+
+    margin-right: 30px;
+}
+
+.header-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px;
+    margin: 5px;
+
+    border: 1px solid var(--border-color-primary);
+}
+
+
+.header-button img {
+    width: 100px;
+}
+
+/*MAIN WINDOW*/
+
+.main-window {
+    width: 95%;
+}
+
+/* GUI */
+
+.gui-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    color: var(--font-color-primary);
+
+    border: 1px solid var(--border-color-primary);
+}
+
+.gui-item {
+    width: 95%;
+
+    display: flex;
+    flex-direction: row;
+
+    border: 1px solid var(--border-color-primary);
+
+    margin: 20px;
+}
+
+
+.gui-item img{
+    width: 300px;
+}
+
+/* TERMINAL */
+
+.terminal-container {
+    display: none;
+    color: var(--font-color-primary);
+
+    border: 1px solid var(--border-color-primary);
+}
+
+

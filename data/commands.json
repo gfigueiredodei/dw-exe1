@@ -1,0 +1,12 @@
+[
+    {
+        "name": "help",
+        "action": "",
+        "result": [
+            "ls - List directory",
+            "open <id> - Open project information",
+            "redirect <id> - Redirect to project link"
+        ]
+        
+    }
+]

@@ -23,6 +23,8 @@ body {
     justify-content: center;
     align-items: center;
 
+    overflow: hidden;
+
     background-color: var(--background-color);
 
     font-family: 'Noto Sans Mono', monospace;
@@ -30,11 +32,30 @@ body {
 }
 
 
+/* SCROLLBAR*/
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: black;
+}
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: white;
+}
+::-webkit-scrollbar-thumb {
+    background-color: white;
+}
+::-webkit-scrollbar-thumb:hover {
+    width: 10px;
+    background-color: var(--font-color-primary);
+}
+
+
 /* HEADER */
 
 .header-container {
     width: 95%;
-    height: 100px;
+    height: 10vh;
     margin: 20px;
 
     display: flex;
@@ -86,24 +107,26 @@ body {
 
 .main-window {
     width: 95%;
+    height: 80vh;
+    display: flex;
+
+    border: 1px solid var(--border-color-primary);
 }
 
 /* GUI */
 
 .gui-container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    width: 60%;
+    max-height: 100%;
+
+    overflow-y: auto;
+    overflow-x: hidden;
 
     color: var(--font-color-primary);
-
-    border: 1px solid var(--border-color-primary);
+    border-right: 1px solid var(--border-color-primary);
 }
 
 .gui-item {
-    width: 95%;
-
     display: flex;
     flex-direction: row;
 
@@ -112,18 +135,121 @@ body {
     margin: 20px;
 }
 
+.gui-item-image {
+    min-width: 400px;
+    max-width: 400px;
+    max-height: 100%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-.gui-item img{
-    width: 300px;
+    margin: 0px 20px 0px 20px;
+}
+
+.gui-item-image img {
+    max-width: 400px;
+    max-height: 400px;
+    width: auto;
+    height: auto;
+}
+
+.gui-item-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    > * {
+        margin: 15px 20px 15px 0;
+    }
+}
+
+.gui-item-text p {
+    color: white;
+}
+
+.gui-item-text-tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+
+    > * {
+        margin-right: 10px;
+    }
+}
+
+.gui-item-tag {
+    padding: 5px;
+    font-size: smaller;
+    border: 1px solid white;
 }
 
 /* TERMINAL */
 
 .terminal-container {
-    display: none;
+    width: 40%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     color: var(--font-color-primary);
 
+    animation:
+    slideDownAnimation 1s ease-in-out 1s forwards,
+    fadeInAnimation 0.8s ease-in-out 1s forwards;
+
+}
+
+.terminal {
+    width: 90%;
+    height: 90%;
+    
     border: 1px solid var(--border-color-primary);
+}
+
+.userEnteredText{
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+#terminal-results{
+    width:100%;
+    height: 80%;
+
+    overflow-y: auto;
+    resize: none;
+    border: none;
+
+    font-size: 14px;
+    line-height: 28px;
+    display: block;
+    color: rgba(255,255,255,0.9);
+}
+
+#terminal-results a{
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+}
+
+#terminal-results a:hover{
+    text-decoration: underline;
+}
+
+#terminal-input{
+    background: black;
+    display: block;
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    border-radius: 0 0 4px 4px;
+    width: 100%;
+    color: white;
+    font-size: 14px;
+    outline: none;
+    font-family: 'Roboto Mono', monospace;
 }
 
 

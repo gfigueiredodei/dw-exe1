@@ -21,9 +21,9 @@
         </div>
 
         <div class="header-actions">
-            <div class="header-button"><span></span> Mode</div>
+            <div class="header-button">Terminal-<span style="color: var(--font-color-primary);">on</span></div>
             <div class="header-button"><span></span> Theme</div>
-            <div class="header-button"><span style="color: var(--font-color-primary);">en</span>-Language</div>
+            <div class="header-button">Language-<span style="color: var(--font-color-primary);">en</span></div>
             <div class="header-button">About</div>
         </div>
     </div>
@@ -104,9 +104,17 @@
 
             <div class="terminal">
                 <div id="terminal-results"></div>
-                <form>
-                    <input type="text" id="terminal-input" placeholder="Type something" autocomplete="off">
-                </form>
+
+                <div class="terminal-input">
+                    <form>
+                        <input type="text" id="terminal-input" placeholder="Type something..." autocomplete="off">
+                    </form>
+                    
+                    <div class="terminal-input-buttons">
+                        <div id="terminal-help-button">Help</div>
+                        <div id="terminal-submit-button">Submit</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

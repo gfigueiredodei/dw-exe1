@@ -239,6 +239,13 @@ body {
     text-decoration: underline;
 }
 
+.terminal-input {
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;   
+}
+
 #terminal-input{
     background: black;
     display: block;
@@ -250,6 +257,19 @@ body {
     font-size: 14px;
     outline: none;
     font-family: 'Roboto Mono', monospace;
+}
+
+.terminal-input-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: right;
+}
+
+.terminal-input-buttons * {
+    padding: 10px;
+    border: 1px solid white;
+    margin: 0px 20px 20px 0px;
+    text-transform: uppercase;
 }
 
 

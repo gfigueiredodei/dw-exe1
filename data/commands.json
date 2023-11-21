@@ -1,6 +1,6 @@
 [
     {
-        "name": "help",
+        "name": ["help", "HELP"],
         "action": "",
         "result": [
             "ls - List directory",

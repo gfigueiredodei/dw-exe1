@@ -44,11 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
     addTextToResults(helpKeyWords);
   }
 
-  var openLinkInNewWindow = function(linkToOpen){
-    window.open(linkToOpen, '_blank');
-    clearInput();
-  }
-
   var textReplies = function() {
     switch(textInputValueLowerCase){
       // funny replies [START]          
@@ -155,6 +150,13 @@ document.addEventListener('DOMContentLoaded', function() {
       addTextToResults(currentDate);
     }
   }
+
+  
+  var openLinkInNewWindow = function(linkToOpen){
+    window.open(linkToOpen, '_blank');
+    clearInput();
+  }
+
 
 });
   

@@ -149,6 +149,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
 }
 
 .popup-header {
@@ -158,7 +159,6 @@ body {
     justify-content: right;
     width: 100%;
     height: 50px;
-    background-color: red;
 }
 .popup-header button {
     margin: 10px;
@@ -169,11 +169,13 @@ body {
 .popup-main {
     display: flex;
     flex-direction: row;
+    height: 100%;
+    width: 100%;
+    align-items: center;
 }
 
 .popup-image-container {
     width: 40%;
-    background-color: green;
 }
 
 .popup-image {
@@ -185,17 +187,33 @@ body {
     justify-content: center;
 }
 
+.popup-image img {
+    width: 100%;
+}
+
 .popup-text-container {
     width: 60%;
-    background-color: yellow;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.popup-text-container p {
+    color: white;
+}
+
+.popup-text-container a {
+    color: var(--font-color-primary);
+    text-decoration: none;
 }
 
 .gui-item {
     display: flex;
     flex-direction: row;
-
+    width: 95%;
     border: 1px solid var(--border-color-primary);
-
+    cursor: pointer;
     margin: 20px;
 }
 
@@ -263,7 +281,6 @@ body {
     animation:
     slideDownAnimation 1s ease-in-out 1s forwards,
     fadeInAnimation 0.8s ease-in-out 1s forwards;
-
 }
 
 .terminal {

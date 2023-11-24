@@ -5,44 +5,40 @@ document.addEventListener('DOMContentLoaded', function() {
         const response = await fetch('../data/data.json');
         const data = await response.json();
         createElements(data);
-    } catch (error) {
-        console.error('Error fetching data:', error);
+    } catch(error) {
+
     }
-}
+  }
 
   function createElements(data) {
     const container = document.getElementById('gui-container');
 
     data.forEach(entry => {
-        const entryElement = document.createElement('div');
-        entryElement.className = "gui-item";
-        entryElement.innerHTML = `
-              <div class="gui-item-image">
-                  <img src="http://placekitten.com/200/300" alt="preview">
-              </div>
+      const entryElement = document.createElement('div');
+      entryElement.className = "gui-item";
+      entryElement.innerHTML = `
+            <div class="gui-item-image">
+                <img src="${entry.image}" alt="preview">
+            </div>
 
-              <div class="gui-item-text">
-                  <h3 id="project-1">${entry.title}</h3><span>${entry.year}</span>
-                  <p>Aliquip ex elit ipsum non. Nostrud esse est ea proident eu mollit reprehenderit non laborum velit voluptate magna aliqua. Irure id id dolore excepteur laborum esse adipisicing elit amet occaecat quis. Adipisicing sint cillum irure do laboris nulla minim occaecat esse ex dolor enim commodo excepteur. Deserunt occaecat incididunt aliquip qui et laboris veniam deserunt nulla do. Irure ullamco et dolor sunt consequat aute eiusmod irure nulla. Fugiat consequat pariatur tempor nisi eiusmod cupidatat cupidatat dolor deserunt.</p>
-                  
-                  <div class="gui-item-text-tags">
-                      <div class="gui-item-tag">
-                          Design
-                      </div>
+            <div class="gui-item-text">
+                <h3><#${entry.id}> ${entry.title}</h3><span>${entry.year}</span>
+                <p>${entry.description}</p>
+                
+                <div class="gui-item-text-tags">
+                  ${entry.tags.map(tag => `<div class="gui-item-tag">${tag}</div>`).join('')}
+                </div>
 
-                      <div class="gui-item-tag">
-                          Web Design
-                      </div>
-                  </div>
-              </div>
-        `;
+                <p>Author(s): ${entry.author.join(', ')}</p>
+            </div>
+      `;
 
-        entryElement.addEventListener('click', () => {
-          showPopup(entry);
-          console.log(entry.year)
-        });
+      entryElement.addEventListener('click', () => {
+        showPopup(entry);
+        console.log(entry.year)
+      });
 
-        container.appendChild(entryElement);
+      container.appendChild(entryElement);
     });
   }
 
@@ -51,24 +47,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     popupContainer.innerHTML = `
         <div class="popup-container">
-        <div class="popup-header">
-            <button id="popup-close">X</button>
-        </div>
 
-        <div class="popup-main">
-            <div class="popup-image-container">
-                <div class="popup-image">
-                    <img src="http://placekitten.com/200/300" alt="">
+          <div class="popup-header">
+              <button id="popup-close">X</button>
+          </div>
+
+          <div class="popup-main">
+
+              <div class="popup-image-container">
+                  <div class="popup-image">
+                      <img src="${entry.image}" alt="">
+                  </div>
+              </div>
+
+              <div class="popup-text-container">
+                <h2>${entry.title}</h2>
+                <p>Year: ${entry.year}</p>
+                <p>Description: ${entry.description}</p>
+                <p>Author(s): ${entry.author.join(', ')}</p>
+                <p>Oriented By: ${entry.oriented}</p>
+                
+                <div class="gui-item-text-tags">
+                  ${entry.tags.map(tag => `<div class="gui-item-tag">${tag}</div>`).join('')}
                 </div>
-            </div>
 
-            <div class="popup-text-container">
-              <h2>${entry.title}</h2>
-              <p>Year: ${entry.year}</p>
-              <p>Description: ${entry.description}</p>
-              <p>Author(s): ${entry.author.join(', ')}</p>
+                <a href="${entry.link}">${entry.link}</a>
+              </div>
+
             </div>
-        </div>
       </div>
     `;
     
@@ -117,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "-------- Projects --------",
       "- help: show the list of commands available",
       "- ls: list all the projects",
+      "- open + < project id >: opens the project information",
       "-------- Utilities --------",
       "- Google + keyword to search in Google (ex. google banana)",
       "- YouTube + keyword to search in YouTube (ex. youtube thanks Obama)",
@@ -126,7 +133,21 @@ document.addEventListener('DOMContentLoaded', function() {
     ].join('<br>');
     addResult(helpKeyWords);
   }
-  
+
+  const idTitleArray = [];
+
+  fetch("../data/data.json")
+  .then(response => response.json())
+  .then(data => {
+    data.forEach(item => {
+      const idTitleString = `/${item.id}   (${item.title})<br>`;
+      idTitleArray.push(idTitleString);
+    })
+  })
+
+  var postProjects = function() {
+    addResult(idTitleArray)
+  }
   
   var textReplies = function() {
     switch(textInputValueLowerCase){
@@ -134,6 +155,11 @@ document.addEventListener('DOMContentLoaded', function() {
       case "teste":
         clearInput();
         addResult("<a style='text-decoration: underline;' target='_blank' href='https://google.com'>Google Link</a>");
+        break;
+
+      case "ls":
+        clearInput();
+        postProjects();
         break;
 
       case "time":

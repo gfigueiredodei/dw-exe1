@@ -1,25 +1,64 @@
 [
     {
         "id": 1,
-        "title": "Teste",
+        "title": "Jardim Virtual",
         "year": "2023",
-        "image": "https://linkdocrl",
-        "description": "Epah, é esgalhar aqui um texto",
-        "author": ["Eu", "Tu", "Ele"],
-        "oriented by": ["", ""],
-        "tags": ["Editorial", "Design"],
-        "link": "https://linkdocrl"
+        "image": "https://student.dei.uc.pt/~gfigueiredo/website/assets/jardim.png",
+        "description": "Jardim Virtual que permite a interação da comunidade académica num espaço digital.",
+        "author": ["Beatriz Moura", "Bruno Simões", "Gonçalo Figueiredo"],
+        "oriented": ["Daniel Lopes", "Luis Pereira"],
+        "tags": ["Web", "Ilustração", "Interação"],
+        "link": "https://student.dei.uc.pt/~gfigueiredo/jardimvirtual"
     },
 
     {
         "id": 2,
-        "title": "Teste2",
-        "year": "2023",
-        "image": "https://linkdocrl",
-        "description": "Epah, é esgalhar aqui um texto",
-        "author": ["Eu", "Tu", "Ele"],
-        "oriented by": ["", ""],
-        "tags": ["Editorial", "Design"],
-        "link": "https://linkdocrl"
+        "title": "Crimes Exemplares",
+        "year": "2022",
+        "image": "https://student.dei.uc.pt/~gfigueiredo/771985187preview/crimes-exemplares.png",
+        "description": "Adaptação do livro 'Crimes Exemplares' de Max Aub para o formato editorial e web.",
+        "author": ["Gonçalo Figueiredo", "João Simões", "Tomás Ferreira"],
+        "oriented": ["Ana Boavida", "Luis Pereira"],
+        "tags": ["Editorial", "Design", "Web"],
+        "link": "https://student.dei.uc.pt/~gfigueiredo/crimes-exemplares/"
+    },
+
+    {
+        "id": 3,
+        "title": "CCDM",
+        "year": "2021/2023",
+        "image": "https://student.dei.uc.pt/~gfigueiredo/771985187preview/ccdm.png",
+        "description": "Identidade Visual para o evento CCDM Ciclo de Conversa Design + Multimédia",
+        "author": ["Gonçalo Figueiredo", "Leonor Domingues", "Margarida Figueiredo"],
+        "oriented": ["Eduardo Mota", "Tiago Martins"],
+        "tags": ["Identidade Visual", "Design", "Web"],
+        "link": "http://ccdm.dei.uc.pt/2023/"
+    },
+
+    {
+        "id": 4,
+        "title": "The Truman Show Online",
+        "year": "2022",
+        "image": "https://student.dei.uc.pt/~gfigueiredo/771985187preview/truman.jpg",
+        "description": "Adaptação para a web do filme 'The Truman Show'",
+        "author": ["Gonçalo Figueiredo", "Micael Nisa", "Tomás Oliveira"],
+        "oriented": ["João Cunha"],
+        "tags": ["Ilustração", "Jogos", "Web"],
+        "link": "https://student.dei.uc.pt/~gfigueiredo/truman"
+    },
+
+    {
+        "id": 5,
+        "title": "Casa de Saúde de São Mateus",
+        "year": "2019",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/fs/4b513890564303.5e1b0c0a10604.jpg",
+        "description": "Projeto fotográfico na Casa de Saúde de São Mateus de Viseu.",
+        "author": ["André Gonçalves", "Gonçalo Figueiredo", "Tomás Oliveira"],
+        "oriented": ["undefined"],
+        "tags": ["Fotografia"],
+        "link": "https://www.behance.net/gallery/90564303/Casa-De-Saude-Sao-Mateus-Viseu"
     }
+
+
+    
 ]

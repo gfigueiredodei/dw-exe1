@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
     popupContainer.innerHTML = `
         <div class="popup-container">
         <div class="popup-header">
-            <button id="ostia">X</button>
+            <button id="popup-close">X</button>
         </div>
 
         <div class="popup-main">
@@ -72,16 +72,11 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     `;
     
-    popupContainer.style.display = "fixed";
+    popupContainer.style.visibility = "visible";
 
-  }
-
-  function closePopup(event) {
-    const popupContainer = document.getElementById('popup-container');
-    if (event.target === popupContainer) {
-        popupContainer.style.display = 'none';
-        window.removeEventListener('click', closePopup);
-    } 
+    document.getElementById("popup-close").addEventListener("click", function(){
+      popupContainer.style.visibility = "hidden";
+    });
   }
 
   fetchData();

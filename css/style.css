@@ -137,7 +137,8 @@ body {
     width: 55%;
     height: 75%;
     border: 1px solid white;
-    display: none;
+    display: fixed;
+    visibility: hidden;
     position: absolute;
     z-index: 1;
     margin: 20px;

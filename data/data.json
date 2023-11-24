@@ -6,11 +6,8 @@
         "image": "https://linkdocrl",
         "description": "Epah, é esgalhar aqui um texto",
         "author": ["Eu", "Tu", "Ele"],
+        "oriented by": ["", ""],
         "tags": ["Editorial", "Design"],
         "link": "https://linkdocrl"
-    },
-
-    {
-
     }
 ]

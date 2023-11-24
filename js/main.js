@@ -1,5 +1,95 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+  async function fetchData() {
+    try {
+        const response = await fetch('../data/data.json');
+        const data = await response.json();
+        createElements(data);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+  function createElements(data) {
+    const container = document.getElementById('gui-container');
+
+    data.forEach(entry => {
+        const entryElement = document.createElement('div');
+        entryElement.className = "gui-item";
+        entryElement.innerHTML = `
+              <div class="gui-item-image">
+                  <img src="http://placekitten.com/200/300" alt="preview">
+              </div>
+
+              <div class="gui-item-text">
+                  <h3 id="project-1">${entry.title}</h3><span>${entry.year}</span>
+                  <p>Aliquip ex elit ipsum non. Nostrud esse est ea proident eu mollit reprehenderit non laborum velit voluptate magna aliqua. Irure id id dolore excepteur laborum esse adipisicing elit amet occaecat quis. Adipisicing sint cillum irure do laboris nulla minim occaecat esse ex dolor enim commodo excepteur. Deserunt occaecat incididunt aliquip qui et laboris veniam deserunt nulla do. Irure ullamco et dolor sunt consequat aute eiusmod irure nulla. Fugiat consequat pariatur tempor nisi eiusmod cupidatat cupidatat dolor deserunt.</p>
+                  
+                  <div class="gui-item-text-tags">
+                      <div class="gui-item-tag">
+                          Design
+                      </div>
+
+                      <div class="gui-item-tag">
+                          Web Design
+                      </div>
+                  </div>
+              </div>
+        `;
+
+        entryElement.addEventListener('click', () => {
+          showPopup(entry);
+          console.log(entry.year)
+        });
+
+        container.appendChild(entryElement);
+    });
+  }
+
+  function showPopup(entry) {
+    const popupContainer = document.getElementById('popup');
+
+    popupContainer.innerHTML = `
+        <div class="popup-container">
+        <div class="popup-header">
+            <button id="ostia">X</button>
+        </div>
+
+        <div class="popup-main">
+            <div class="popup-image-container">
+                <div class="popup-image">
+                    <img src="http://placekitten.com/200/300" alt="">
+                </div>
+            </div>
+
+            <div class="popup-text-container">
+              <h2>${entry.title}</h2>
+              <p>Year: ${entry.year}</p>
+              <p>Description: ${entry.description}</p>
+              <p>Author(s): ${entry.author.join(', ')}</p>
+            </div>
+        </div>
+      </div>
+    `;
+    
+    popupContainer.style.display = "fixed";
+
+  }
+
+  function closePopup(event) {
+    const popupContainer = document.getElementById('popup-container');
+    if (event.target === popupContainer) {
+        popupContainer.style.display = 'none';
+        window.removeEventListener('click', closePopup);
+    } 
+  }
+
+  fetchData();
+
+
+  // TERMINAL
+  //-----------------------------------------------------------------------------------------
+
   document.getElementsByTagName('form')[0].onsubmit = function(evt) {
     evt.preventDefault();
     checkWord();
@@ -15,56 +105,40 @@ document.addEventListener('DOMContentLoaded', function() {
   var clearInput = function(){
     document.getElementById('terminal-input').value = "";
   }
-  var scrollToBottomOfResults = function(){
+  var scrollBottom = function(){
     var terminalResultsDiv = document.getElementById('terminal-results');
     terminalResultsDiv.scrollTop = terminalResultsDiv.scrollHeight;
   }
 
-  var addTextToResults = function(textToAdd){
+  var addResult = function(textToAdd){
     document.getElementById('terminal-results').innerHTML += "<p>" + textToAdd + "</p>";
-    scrollToBottomOfResults();
+    scrollBottom();
   }
-
-
-
+  
   // COMANDOS
 
   var postHelpList = function(){
     var helpKeyWords = [
-      "- Open + website URL to open it in the browser (ex. open mahdif.com)",
-      "- Google + keyword to search directly in Google (ex. google banana)",
-      "- YouTube + keyword to search directly in YouTube (ex. youtube thanks Obama)",
-      "- Wiki + keyword to search directly in Wikipedia (ex. wiki numbers)",
+      "-------- Projects --------",
+      "- help: show the list of commands available",
+      "- ls: list all the projects",
+      "-------- Utilities --------",
+      "- Google + keyword to search in Google (ex. google banana)",
+      "- YouTube + keyword to search in YouTube (ex. youtube thanks Obama)",
+      "- Wiki + keyword to search in Wikipedia (ex. wiki numbers)",
       "- 'Time' will display the current time.",
-      "- 'Date' will display the current date.",
-      "- 'ironman' will make you happy",
-      "- 'cat videos' will make you even happier",
-      "* There are more keywords that you have to discover by yourself."
+      "- 'Date' will display the current date."
     ].join('<br>');
-    addTextToResults(helpKeyWords);
+    addResult(helpKeyWords);
   }
-
+  
+  
   var textReplies = function() {
     switch(textInputValueLowerCase){
-      // funny replies [START]          
+         
       case "teste":
         clearInput();
-        addTextToResults("<a style='text-decoration: underline;' target='_blank' href='https://google.com'>Google Link</a>");
-        break;
-
-      case "i love you":
-      case "love you":
-      case "love":
-        clearInput();
-        addTextToResults("Love");
-        break;
-
-      case "ironman":
-      case "iron man":
-      case "shoot to thrill":
-        clearInput();
-        addTextToResults('Shoot to Thrill!');
-        openLinkInNewWindow('https://www.youtube.com/watch?v=xRQnJyP77tY');
+        addResult("<a style='text-decoration: underline;' target='_blank' href='https://google.com'>Google Link</a>");
         break;
 
       case "time":
@@ -85,42 +159,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
       default:
       clearInput();
-      addTextToResults("<p><i>The command " + "<b>" + textInputValue + "</b>" + " was not found. Type <b>Help</b> to see all commands.</i></p>");
+      addResult("<p><i>The command " + "<b>" + textInputValue + "</b>" + " was not found. Type <b>Help</b> to see all commands.</i></p>");
       break;
     }
   }
-
+  
   var checkWord = function() {
     textInputValue = document.getElementById('terminal-input').value.trim(); 
     textInputValueLowerCase = textInputValue.toLowerCase(); 
 
     if (textInputValue != ""){
-      addTextToResults("<p class='userEnteredText'>user@gfigueiredo > " + textInputValue + "</p>");
+      addResult("<p class='userEnteredText'>user@gfigueiredo > " + textInputValue + "</p>");
 
       if (textInputValueLowerCase.substr(0,5) == "open ") {
-        openLinkInNewWindow('http://' + textInputValueLowerCase.substr(5));
-        addTextToResults("<i>The URL " + "<b>" + textInputValue.substr(5) + "</b>" + " should be opened now.</i>");
+        redirect('http://' + textInputValueLowerCase.substr(5));
+        addResult("<i>The URL " + "<b>" + textInputValue.substr(5) + "</b>" + " should be opened now.</i>");
       } else if (textInputValueLowerCase.substr(0,8) == "youtube ") {
-        openLinkInNewWindow('https://www.youtube.com/results?search_query=' + textInputValueLowerCase.substr(8));
-        addTextToResults("<i>I've searched on YouTube for " + "<b>" + textInputValue.substr(8) + "</b>" + " it should be opened now.</i>");
+        redirect('https://www.youtube.com/results?search_query=' + textInputValueLowerCase.substr(8));
+        addResult("<i>I've searched on YouTube for " + "<b>" + textInputValue.substr(8) + "</b>" + " it should be opened now.</i>");
       } else if (textInputValueLowerCase.substr(0,7) == "google ") {
-        openLinkInNewWindow('https://www.google.com/search?q=' + textInputValueLowerCase.substr(7));
-        addTextToResults("<i>I've searched on Google for " + "<b>" + textInputValue.substr(7) + "</b>" + " it should be opened now.</i>");
+        redirect('https://www.google.com/search?q=' + textInputValueLowerCase.substr(7));
+        addResult("<i>I've searched on Google for " + "<b>" + textInputValue.substr(7) + "</b>" + " it should be opened now.</i>");
       } else if (textInputValueLowerCase.substr(0,5) == "wiki "){
-        openLinkInNewWindow('https://wikipedia.org/w/index.php?search=' + textInputValueLowerCase.substr(5));
-        addTextToResults("<i>I've searched on Wikipedia for " + "<b>" + textInputValue.substr(5) + "</b>" + " it should be opened now.</i>");
+        redirect('https://wikipedia.org/w/index.php?search=' + textInputValueLowerCase.substr(5));
+        addResult("<i>I've searched on Wikipedia for " + "<b>" + textInputValue.substr(5) + "</b>" + " it should be opened now.</i>");
       } else{
         textReplies();
       }
     }
   };
 
-  scrollToBottomOfResults();
-  addTextToResults("<p class='userEnteredText'>This is the website's command line, type <b>help</b> for the list of commands</p>");
-  addTextToResults("<p class='userEnteredText'></p>");
+  document.getElementById("terminal-help-button").addEventListener("click", function(){
+    addResult("<p class='userEnteredText'>user@gfigueiredo > help</p>");
+    postHelpList();
+    scrollBottom();
+  })
 
-
-
+  scrollBottom();
+  addResult("<p class='userEnteredText'>This is the website's command line, type <b>help</b> for the list of commands</p>");
+  addResult("<p class='userEnteredText'></p>");
 
   /*-----    OUTROS  -----*/
 
@@ -144,19 +221,20 @@ document.addEventListener('DOMContentLoaded', function() {
     var currentDate = dateDay + "/" + dateMonth + "/" + dateYear;
 
     if (postTimeDay == "time"){
-      addTextToResults(currentTime);
+      addResult(currentTime);
     }
     if (postTimeDay == "date"){
-      addTextToResults(currentDate);
+      addResult(currentDate);
     }
   }
 
-  
-  var openLinkInNewWindow = function(linkToOpen){
-    window.open(linkToOpen, '_blank');
+  var redirect = function(link){
+    window.open(link, '_blank');
     clearInput();
   }
-
+  
+  // TERMINAL
+  //-----------------------------------------------------------------------------------------
 
 });
   
